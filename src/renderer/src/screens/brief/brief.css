@@ -1,0 +1,54 @@
+.brief {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(330px, 1fr);
+  align-items: start;
+  gap: 32px;
+  max-width: 1320px;
+}
+
+.brief__section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.brief__section .section-head {
+  margin-bottom: 0;
+}
+
+.brief__textarea {
+  min-height: 270px;
+  font-size: var(--fs-md);
+}
+
+.brief__tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+
+.brief__tip svg {
+  flex: none;
+  margin-top: 1px;
+  color: var(--accent);
+}
+
+.brief__card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 22px 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-1);
+}
+
+@media (max-width: 1180px) {
+  .brief {
+    grid-template-columns: minmax(0, 1fr) minmax(310px, 0.9fr);
+    gap: 24px;
+  }
+}

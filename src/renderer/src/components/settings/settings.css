@@ -1,0 +1,112 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.settings__section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.settings__section + .settings__section {
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.settings__section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.settings__title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+}
+
+.settings__key-row {
+  display: flex;
+  gap: 8px;
+}
+
+.input-affix {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.input-affix .input {
+  padding-right: 40px;
+}
+
+.input-affix .icon-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+}
+
+.sysinfo {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.sysinfo > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 40px;
+  padding: 8px 14px;
+}
+
+.sysinfo > div + div {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.sysinfo dt {
+  flex: none;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+.sysinfo dd {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sysinfo__mono {
+  font-family: var(--mono);
+  font-weight: 400 !important;
+}
+
+.sysinfo__ok {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--success);
+}
+
+.sysinfo__bad {
+  color: var(--danger);
+}
+
+.code-inline {
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--text) 8%, transparent);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.95em;
+}

@@ -1,0 +1,21 @@
+FFmpeg 9.0.2 for Glimpse (macOS, Apple silicon)
+
+This folder holds the ffmpeg and ffprobe that Glimpse uses and ships inside the app
+(Glimpse.app/Contents/Resources/ffmpeg). The two binaries are not in git:
+"node scripts/fetch-ffmpeg.mjs" downloads them, checks the checksums below and puts them here.
+
+Build:    static GPL v3 build with libx264 by Martin Riedl, https://ffmpeg.martin-riedl.de
+          (signed with his Developer ID, links only system libraries, needs macOS 12 or later)
+Version:  9.0.2 (build 1789931890_9.0.2)
+Licence:  GNU General Public License version 3, see LICENSE-FFMPEG.txt in this folder
+Source:   https://ffmpeg.org/download.html
+
+Downloads and their sha256:
+  https://ffmpeg.martin-riedl.de/download/macos/arm64/1789931890_9.0.2/ffmpeg.zip
+    c8ed4c4e6978a03c485edbfe4e0a5dc2380f8a30bba5150531b31b094492d924
+  https://ffmpeg.martin-riedl.de/download/macos/arm64/1789931890_9.0.2/ffprobe.zip
+    fcbe839537485eaee7a7a8bc5cbc0f90d53617e80943e8a5b2e31cb851197ea6
+
+The unpacked binaries and their sha256:
+  ffmpeg    2e11c6f90993cdb79fff84d3f90044d28316b310e75b3e030cfc9a54f2c9d384
+  ffprobe   2738aa46a7f9acbc8ab09a6715554c90f7de603171ac403726765685df6a0059

@@ -1,0 +1,124 @@
+/* Cinematic neutral: graphite greys with one lime accent; dark and light follow macOS. Montserrat. */
+
+:root {
+  color-scheme: light dark;
+
+  /* video areas: dark in both themes, like a pro editor's viewer */
+  --media-bg: #0b0b0b;
+
+  --radius-sm: 8px;
+  --radius: 10px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  --font: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --fs-xs: 11.5px;
+  --fs-sm: 12.5px;
+  --fs-base: 13.5px;
+  --fs-md: 15px;
+  --fs-lg: 17px;
+  /* section headline: Montserrat Bold 16 pt */
+  --fs-h2: 21px;
+  --fs-h1: 28px;
+
+  --topbar-h: 52px;
+  /* room for the macOS traffic lights (titleBarStyle: hiddenInset) */
+  --traffic-lights: 84px;
+  --foot-h: 68px;
+  --gutter: 32px;
+
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Dark theme. The video areas re-declare it so they (and what sits on them) stay dark in light mode. */
+:root,
+.project-card__cover,
+.project-card__delete,
+.video-card__media,
+.review__stage,
+.timeline__strip,
+.format-preview,
+.frame {
+  --bg: #141414;
+  --surface-1: #1c1c1c;
+  --surface-2: #252525;
+  --surface-3: #2e2e2e;
+  --surface-sunken: rgba(0, 0, 0, 0.3);
+  --overlay: rgba(0, 0, 0, 0.62);
+
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+
+  --text: #f2f2f2;
+  --text-muted: #a6a6a6;
+  --text-faint: #8a8a8a;
+
+  --accent: #c5f03c;
+  --accent-hover: #d6f772;
+  --accent-soft: rgba(197, 240, 60, 0.13);
+  --accent-softer: rgba(197, 240, 60, 0.06);
+  --on-accent: #141414;
+
+  --success: #4fd6a0;
+  --success-soft: rgba(79, 214, 160, 0.13);
+  --warning: #f2b84b;
+  --warning-soft: rgba(242, 184, 75, 0.13);
+  --danger: #ff7a70;
+  --danger-soft: rgba(255, 122, 112, 0.13);
+
+  --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.32);
+  --shadow-pop: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--border);
+  --focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #eeeeee;
+    --surface-1: #f8f8f8;
+    --surface-2: #ffffff;
+    --surface-3: #e6e6e6;
+    --surface-sunken: rgba(0, 0, 0, 0.04);
+    --overlay: rgba(0, 0, 0, 0.3);
+
+    --border: rgba(0, 0, 0, 0.12);
+    --border-strong: rgba(0, 0, 0, 0.24);
+    --border-subtle: rgba(0, 0, 0, 0.07);
+
+    --text: #171717;
+    --text-muted: #545454;
+    --text-faint: #6b6b6b;
+
+    /* a darker lime: the bright one is unreadable as text on light grey */
+    --accent: #3d6600;
+    --accent-hover: #2f5000;
+    --accent-soft: rgba(61, 102, 0, 0.13);
+    --accent-softer: rgba(61, 102, 0, 0.06);
+    --on-accent: #ffffff;
+
+    --success: #006b55;
+    --success-soft: rgba(0, 107, 85, 0.13);
+    --warning: #7a4a00;
+    --warning-soft: rgba(122, 74, 0, 0.13);
+    --danger: #ad2020;
+    --danger-soft: rgba(173, 32, 32, 0.13);
+
+    --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.08);
+    --shadow-pop: 0 30px 80px rgba(0, 0, 0, 0.2), 0 0 0 1px var(--border);
+    --focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+  }
+}
+
+.project-card__cover,
+.project-card__delete,
+.video-card__media,
+.review__stage,
+.timeline__strip,
+.format-preview,
+.frame {
+  color-scheme: dark;
+  color: var(--text);
+}

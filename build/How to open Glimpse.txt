@@ -1,0 +1,85 @@
+How to open Glimpse
+===================
+
+Glimpse turns the videos from your Meta glasses into a highlight video: Gemini
+watches them and suggests the best moments, you pick and trim, Glimpse cuts.
+
+You need a Mac with Apple silicon (M1 or newer) and macOS 13 or later.
+Nothing else has to be installed.
+
+
+1. Install it
+
+   Drag Glimpse.app into your Applications folder.
+
+
+2. Open it the first time
+
+   Glimpse is not notarised by Apple, so macOS blocks it once.
+
+   - Double-click Glimpse. macOS says it cannot check the app. Close the
+     message.
+   - Open System Settings -> Privacy & Security, scroll down and click
+     "Open Anyway". Confirm with your password or Touch ID.
+
+   Or do it in one step: open the Terminal app, paste this line and press
+   Return. After that Glimpse opens like any other app.
+
+       xattr -dr com.apple.quarantine /Applications/Glimpse.app
+
+   If Glimpse opens but says "Glimpse is damaged", quit it, run that Terminal
+   line once and open Glimpse again.
+
+
+3. Connect Gemini
+
+   Glimpse uses Google's Gemini to find the best moments. Everyone needs their
+   own Gemini API key. It is free and takes about two minutes:
+
+   - Go to https://aistudio.google.com/apikey and sign in with a Google account.
+   - Click "Create API key" and copy the key.
+   - Paste it into Glimpse on its first screen and click "Connect".
+
+   Without billing the analysis costs nothing, but Google limits it: about
+   20 analyses a day with the standard model (one analysis is one video; the
+   exact limit is shown in Google AI Studio). When the daily quota is used up,
+   Glimpse tells you, and you can wait until the next day or switch to the
+   Gemini 3.5 Flash-Lite model in Settings, which allows more free analyses.
+   For a whole festival you can turn on billing in Google AI Studio. Then a
+   video of about 5 minutes costs a few cents, and Glimpse shows the cost
+   before the analysis starts.
+
+
+4. What macOS asks for
+
+   Glimpse keeps your API key encrypted in the macOS Keychain. macOS may ask
+   whether Glimpse may use "Glimpse Safe Storage". That is Glimpse's own
+   entry. Type your Mac password and click "Always Allow".
+
+
+5. Updates
+
+   Glimpse does not update itself. When you get a newer Glimpse, quit the app
+   and replace Glimpse.app in your Applications folder with the new one. Your
+   projects and settings stay. The first time you open the new version, do
+   step 2 again, and macOS asks for the Keychain once more (step 4).
+
+
+Privacy
+
+   Your original videos stay on your Mac. For the analysis, a smaller copy
+   (720p) of each video is sent to Google's Gemini and deleted there after
+   about 48 hours; removing a video or a project in Glimpse deletes it there
+   right away. Without billing, Google may use what you send to improve its
+   products, and people at Google may look at it (outside the EU and EEA).
+   For footage with other people in it, use an API key with billing turned
+   on. Your API key is stored only on your Mac and sent only to Google.
+   Nothing is sent to Jan or to anyone else.
+
+
+Glimpse includes FFmpeg 9.0.2, free software under the GPL v3, in the build
+by Martin Riedl with x264, x265 and other libraries. How it is built and where
+its sources are: https://ffmpeg.martin-riedl.de. Its licence and the details
+of this build are inside the app (Glimpse.app/Contents/Resources/ffmpeg:
+LICENSE-FFMPEG.txt and SOURCE.txt). FFmpeg's own source code is at
+https://ffmpeg.org/download.html.

@@ -1,0 +1,60 @@
+appId: de.janfabig.glimpse
+# The app file and the name macOS shows (menu bar, Dock): Glimpse.app. package.json's productName is
+# the same: the data folder and the Keychain entry of the API key hang on it (src/main/core/appIdentity.ts).
+productName: Glimpse
+directories:
+  buildResources: build
+  output: dist
+# Allow-list: the electron-vite build only. electron-builder adds package.json and the production
+# dependencies by itself, so sources, tests, docs, caches (test videos, UI builds) and test reports
+# can never end up in the app.
+files:
+  - out/**
+  # nothing from the dependencies that Node never loads at runtime
+  - '!**/node_modules/**/*.map'
+  - '!**/node_modules/{@types,undici-types}{,/**}'
+  - '!**/node_modules/gaxios/build/*/test{,/**}'
+# ffmpeg and ffprobe travel inside the app (Contents/Resources/ffmpeg) with their licence, so nothing
+# else has to be installed. Only these four files (node scripts/fetch-ffmpeg.mjs puts the two
+# binaries into vendor/ffmpeg). The signing below signs the two binaries like every other binary in
+# the bundle and seals all four as resources; build/verify-package.mjs checks them.
+extraResources:
+  - from: vendor/ffmpeg
+    to: ffmpeg
+    filter:
+      - ffmpeg
+      - ffprobe
+      - LICENSE-FFMPEG.txt
+      - SOURCE.txt
+mac:
+  target:
+    - target: dir
+      arch: arm64
+  category: public.app-category.video
+  # Local build without an Apple Developer certificate, nothing is notarised. '-' signs ad hoc with
+  # the hardened runtime (after the fuses are set), so dyld ignores DYLD_INSERT_LIBRARIES & co. The
+  # signature binds Info.plist (with the asar hash) and gives the app a code identity of its own, so
+  # the Keychain asks once more after every build that changes the app ("Always Allow").
+  identity: '-'
+  notarize: false
+  entitlementsInherit: build/entitlements.mac.plist
+# Electron fuses, set in the packaged copy only (E2E runs use node_modules' Electron, untouched).
+# They keep other programs on this Mac from running their code as this app, which the Keychain
+# trusts with the key that encrypts the stored API key. Check a build with build/verify-package.mjs.
+electronFuses:
+  runAsNode: false # ELECTRON_RUN_AS_NODE (the app never forks Node processes)
+  enableNodeOptionsEnvironmentVariable: false # NODE_OPTIONS and NODE_EXTRA_CA_CERTS
+  enableNodeCliInspectArguments: false # --inspect…, SIGUSR1 (Playwright's _electron cannot attach)
+  enableEmbeddedAsarIntegrityValidation: true # app.asar must match its hash in Info.plist
+  onlyLoadAppFromAsar: true # never an app/ folder (or a folder named app.asar) instead
+  # stays on: the renderer is loaded from file:// and needs it
+  grantFileProtocolExtraPrivileges: true
+  # stays off: Chromium would then use the Keychain as well (also in E2E runs, which must never
+  # touch it) for cookies the app does not have
+  enableCookieEncryption: false
+dmg:
+  artifactName: ${productName}-${version}.${ext}
+  # no auto-updater and nothing is published, so the differential-update .blockmap is not needed
+  writeUpdateInfo: false
+npmRebuild: false
+publish: null

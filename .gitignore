@@ -1,0 +1,21 @@
+node_modules
+dist
+out
+.DS_Store
+.eslintcache
+*.log*
+
+artifacts
+.cache
+test-results
+playwright-report
+*.tsbuildinfo
+
+# ffmpeg and ffprobe are fetched, not committed (scripts/fetch-ffmpeg.mjs, vendor/ffmpeg/SOURCE.txt)
+vendor/ffmpeg/ffmpeg
+vendor/ffmpeg/ffprobe
+
+# secrets and local tool state never belong in the repo
+.env
+.env.*
+.claude/

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2e2e2e"/>
+      <stop offset="0.55" stop-color="#1a1a1a"/>
+      <stop offset="1" stop-color="#0b0b0b"/>
+    </linearGradient>
+    <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6ff9a"/>
+      <stop offset="1" stop-color="#c5f03c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.42" r="0.5">
+      <stop offset="0" stop-color="#c5f03c" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#c5f03c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="100" y="100" width="824" height="824" rx="186" fill="url(#bg)"/>
+  <rect x="100" y="100" width="824" height="824" rx="186" fill="url(#glow)"/>
+  <rect x="102" y="102" width="820" height="820" rx="184" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="4"/>
+  <!-- film frame -->
+  <rect x="250" y="318" width="524" height="400" rx="64" fill="none" stroke="url(#fg)" stroke-width="38"/>
+  <!-- sprockets -->
+  <g fill="#c5f03c" fill-opacity="0.7">
+    <rect x="300" y="262" width="56" height="30" rx="10"/>
+    <rect x="404" y="262" width="56" height="30" rx="10"/>
+    <rect x="508" y="262" width="56" height="30" rx="10"/>
+    <rect x="612" y="262" width="56" height="30" rx="10"/>
+    <rect x="300" y="744" width="56" height="30" rx="10"/>
+    <rect x="404" y="744" width="56" height="30" rx="10"/>
+    <rect x="508" y="744" width="56" height="30" rx="10"/>
+    <rect x="612" y="744" width="56" height="30" rx="10"/>
+  </g>
+  <!-- play -->
+  <path d="M462 430 L462 606 L606 518 Z" fill="url(#fg)" stroke="url(#fg)" stroke-width="30" stroke-linejoin="round"/>
+  <!-- highlight sparkle -->
+  <path d="M800 160 C808 210 820 222 870 230 C820 238 808 250 800 300 C792 250 780 238 730 230 C780 222 792 210 800 160 Z" fill="#ffffff"/>
+  <path d="M866 330 C870 352 876 358 898 362 C876 366 870 372 866 394 C862 372 856 366 834 362 C856 358 862 352 866 330 Z" fill="#c5f03c"/>
+</svg>

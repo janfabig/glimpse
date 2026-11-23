@@ -1,0 +1,291 @@
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 18px;
+}
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-1);
+  transition: opacity 0.15s var(--ease);
+}
+
+/* main is removing it: keeps its place until main answers, takes no clicks */
+.video-card.is-removing {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.video-card__media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--surface-3), var(--media-bg));
+}
+
+.video-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-card__media.is-landscape img {
+  object-fit: contain;
+}
+
+.video-card__placeholder {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: var(--text-faint);
+}
+
+.video-card__play {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* the media box clips the usual outer ring, and an inset shadow would sit under the poster */
+.video-card__play:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.video-card__play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.72);
+  color: #fff;
+  opacity: 0;
+  backdrop-filter: blur(8px);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.15s var(--ease);
+}
+
+.video-card__play:enabled:hover .video-card__play-icon,
+.video-card__play:focus-visible .video-card__play-icon {
+  opacity: 1;
+}
+
+.video-card__index {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  pointer-events: none;
+}
+
+.video-card__duration {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  pointer-events: none;
+}
+
+.video-card__remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.72);
+  color: #fff;
+  opacity: 0;
+  backdrop-filter: blur(8px);
+  transition: opacity 0.15s var(--ease);
+}
+
+.video-card:hover .video-card__remove,
+.video-card__remove:focus-visible {
+  opacity: 1;
+}
+
+.video-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px 14px;
+}
+
+.video-card__name {
+  overflow: hidden;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.video-card__meta {
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+}
+
+.video-card__status {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.video-card__state {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+
+.video-card__state svg {
+  flex: none;
+}
+
+.video-card__state-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.video-card__percent {
+  flex: none;
+  margin-left: auto;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.video-card__state.is-done svg {
+  color: var(--success);
+}
+
+.video-card__state.is-waiting {
+  color: var(--text-faint);
+}
+
+.video-card__state.is-error {
+  align-items: flex-start;
+  color: var(--danger);
+  line-height: 1.4;
+}
+
+.video-card__state.is-error svg {
+  margin-top: 1px;
+}
+
+/* the reason is what the user acts on: up to four lines, the full text as tooltip */
+.video-card__error-text {
+  display: -webkit-box;
+  min-width: 0;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.video-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.video-grid__add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 220px;
+  border: 1.5px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  color: var(--text-muted);
+  font-weight: 600;
+  transition:
+    border-color 0.15s var(--ease),
+    color 0.15s var(--ease),
+    background-color 0.15s var(--ease);
+}
+
+.video-grid__add:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--accent-softer);
+  color: var(--accent);
+}
+
+.video-grid__add:disabled {
+  opacity: 0.55;
+}
+
+/* placeholder while main reads a file in */
+
+.video-card.is-importing {
+  border-style: dashed;
+  background: transparent;
+}
+
+.video-card.is-importing .video-card__media {
+  background: var(--accent-softer);
+}
+
+.video-card.is-importing .video-card__placeholder {
+  color: var(--accent);
+}
+
+.video-card.is-importing .video-card__meta {
+  color: var(--text-faint);
+}
+
+/* empty state */
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 100%;
+  padding: 40px;
+  border: 1.5px dashed var(--border-strong);
+  border-radius: 20px;
+  background: radial-gradient(
+    500px 260px at 50% 30%,
+    color-mix(in srgb, var(--accent) 7%, transparent),
+    transparent 70%
+  );
+  text-align: center;
+}
+
+.dropzone__icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 6px;
+  border-radius: 18px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.dropzone__text {
+  max-width: 440px;
+  margin-bottom: 10px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.dropzone__note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  color: var(--text-faint);
+  font-size: var(--fs-sm);
+}

@@ -1,0 +1,15 @@
+/* "Ask Gemini again" dialog */
+
+.again {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* the button is the third one in the header of the Edit step: up to this width it needs the room of
+   the subtitle (review.css hides the subtitle up to 1280 px anyway) */
+@media (max-width: 1420px) {
+  .review__subtitle {
+    display: none;
+  }
+}
